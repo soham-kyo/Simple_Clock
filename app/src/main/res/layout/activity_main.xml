@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".MainActivity">
+
+    <ImageButton
+        android:id="@+id/btnThemeToggle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Toggle Theme"
+        android:src="@android:drawable/ic_menu_day"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/text_primary" />
+
+    <!-- Clock & Alarm Section -->
+    <ScrollView
+        android:id="@+id/clockLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintTop_toBottomOf="@id/btnThemeToggle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/card_background"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="32dp">
+
+                    <TextClock
+                        android:id="@+id/textClock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:format12Hour="hh:mm:ss a"
+                        android:format24Hour="HH:mm:ss"
+                        android:textColor="@color/text_primary"
+                        android:textSize="48sp"
+                        android:textStyle="bold" />
+
+                    <TextClock
+                        android:id="@+id/dateClock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:format12Hour="EEE, MMM d"
+                        android:format24Hour="EEE, MMM d"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/alarmStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="No alarm set"
+                android:textColor="@color/accent_color"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSetAlarm"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:minWidth="120dp"
+                    android:text="Set Alarm"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    app:cornerRadius="30dp" />
+
+                <Button
+                    android:id="@+id/btnStopAlarm"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="8dp"
+                    android:minWidth="100dp"
+                    android:text="Stop"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#FF5252"
+                    android:visibility="gone"
+                    app:cornerRadius="30dp" />
+
+                <Button
+                    android:id="@+id/btnDeleteAlarm"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="8dp"
+                    android:text="Delete"
+                    android:textColor="#FF5252"
+                    android:visibility="gone"
+                    app:cornerRadius="30dp"
+                    app:strokeColor="#FF5252" />
+
+                <ImageButton
+                    android:id="@+id/btnAlarmSettings"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Alarm Settings"
+                    android:src="@android:drawable/ic_menu_manage"
+                    app:tint="@color/text_secondary" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Stopwatch Section -->
+    <ScrollView
+        android:id="@+id/stopwatchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintTop_toBottomOf="@id/btnThemeToggle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/stopwatchDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="00:00:00.0"
+                android:textColor="@color/primary_color"
+                android:textSize="56sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnLapStopwatch"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="Lap"
+                    app:cornerRadius="40dp" />
+
+                <Button
+                    android:id="@+id/btnStartStopwatch"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginHorizontal="24dp"
+                    android:text="Start"
+                    android:textSize="18sp"
+                    app:cornerRadius="50dp" />
+
+                <Button
+                    android:id="@+id/btnResetStopwatch"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="Reset"
+                    app:cornerRadius="40dp" />
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="32dp"
+                app:cardBackgroundColor="@color/card_background"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    tools:ignore="NestedScrolling">
+
+                    <TextView
+                        android:id="@+id/lapsDisplay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="16sp" />
+                </ScrollView>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Timer Section -->
+    <ScrollView
+        android:id="@+id/timerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintTop_toBottomOf="@id/btnThemeToggle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/timerDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="00:00:00"
+                android:textColor="@color/accent_color"
+                android:textSize="64sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSetTimer"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:text="Set"
+                    app:cornerRadius="35dp" />
+
+                <Button
+                    android:id="@+id/btnStartTimer"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="Start"
+                    android:textSize="16sp"
+                    app:cornerRadius="45dp" />
+
+                <Button
+                    android:id="@+id/btnStopTimer"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:text="Stop"
+                    android:backgroundTint="#FF5252"
+                    android:textColor="#FFFFFF"
+                    android:visibility="gone"
+                    app:cornerRadius="35dp" />
+
+                <Button
+                    android:id="@+id/btnResetTimer"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="8dp"
+                    android:text="Reset"
+                    app:cornerRadius="35dp" />
+
+                <ImageButton
+                    android:id="@+id/btnTimerSettings"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Timer Settings"
+                    android:src="@android:drawable/ic_menu_manage"
+                    app:tint="@color/text_secondary" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/nav_background"
+        app:itemIconTint="@color/nav_item_selected"
+        app:itemTextColor="@color/nav_item_selected"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
