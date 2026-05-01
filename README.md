@@ -165,7 +165,7 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 ## 👤 Author
 
-**Your Name**
+**Soham Patil**
 - GitHub: [@soham-kyo](https://github.com/soham-kyo)
 
 ---
